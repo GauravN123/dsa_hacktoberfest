@@ -1,0 +1,196 @@
+#include<stdio.h>
+# define MAX 5
+int dequeue_arr[MAX];
+int front = -1;
+int rear = -1;
+void insert_front()
+{
+    int data;
+    if((front == 0 && rear == MAX-1) || (front == rear+1))
+    {
+        printf(" Queue Overflow \n");
+        return;
+    }
+    if(front == -1)
+    {
+        front = 0;
+        rear = 0;
+    }
+    else if(front == 0){
+        front=MAX-1;
+    }
+    else
+    {
+        front--;
+    }
+    scanf("%d",&data);
+    dequeue_arr[front] = data;
+}
+void insert_rear()
+{
+    int data;
+    if((front == 0 && rear == MAX-1) || (front == rear+1))
+    {
+        printf(" Queue Overflow \n");
+        return;
+    }
+    if(front == -1)
+    {
+        front = 0;
+        rear = 0;
+    }
+    else
+    {
+        if(rear == MAX-1)
+            rear = 0;
+        else
+            rear = rear+1;
+    }
+    scanf("%d",&data);
+    dequeue_arr[rear] = data;
+}
+
+void deletionrear(){
+    if(front == -1)
+    {
+        printf(" Queue Underflow \n");
+        return ;
+    }
+    printf("Element deleted from queue is : %d\n",dequeue_arr[front]);
+    if(front == rear)
+    {
+        front = -1;
+        rear=-1;
+    }
+    else
+    {
+        if(rear==0)
+            rear=MAX-1;
+        else
+            rear--;
+    }
+    
+}
+void deletionfront(){
+    
+    if(front == -1)
+    {
+        printf(" Queue Underflow \n");
+        return ;
+    }
+    printf("Element deleted from queue is : %d\n",dequeue_arr[front]);
+    if(front == rear)
+    {
+        front = -1;
+        rear=-1;
+    }
+    else
+    {
+        if(front == MAX-1)
+            front = 0;
+        else
+            front = front+1;
+    }
+}
+
+void display(){
+    
+    int front_pos = front,rear_pos = rear;
+    if(front == -1)
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+    printf("Queue elements :\n");
+    if( front_pos <= rear_pos )
+        while(front_pos <= rear_pos)
+        {
+            printf("%d ",dequeue_arr[front_pos]);
+            front_pos++;
+        }
+    else{
+        while(front_pos <= MAX-1)
+        {
+            printf("%d ",dequeue_arr[front_pos]);
+            front_pos++;
+        }
+        front_pos = 0;
+        while(front_pos <= rear_pos)
+        {
+            printf("%d ",dequeue_arr[front_pos]);
+            front_pos++;
+        }
+    }
+    printf("\n");
+}
+void input_dq(){
+    int choice1;
+    while(1){
+        printf("1.insert rear\n");
+        printf("2.delete front\n");
+        printf("3.delete rear\n");
+        printf("4.display\n");
+        printf("5.quit\n");
+        scanf("%d",&choice1);
+        switch(choice1){
+            case 1 : insert_rear();
+            break;
+            case 2 : deletionfront();
+            break;
+            case 3 : deletionrear();
+            break;
+            case 4 : Display();
+            break;
+            case 5 : exit(1);
+            default : printf(" ");
+        }
+        
+    }
+}
+void output_dq(){
+    int choise2;
+    while(1){
+        printf("1.delete front\n");
+        printf("2.insert front\n");
+        printf("3.insert rear\n");
+        printf("4.display\n");
+        printf("5.quit\n");
+        scanf("%d",&choice2);
+        switch(choice2){
+            case 1 : deletionfront();
+            break;
+            case 2 : insert_front();
+            break;
+            case 3 : insert_rear();
+            break;
+            case 4 : Display();
+            break;
+            case 5 : exit(1);
+            default : printf(" ");
+        }
+        
+    }
+}
+int main(){
+    int choise;
+    while(1){
+        printf("1.input_dq\n");
+        printf("2.output_dq\n");
+        
+        printf("3.quit\n");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1 : input_dq();
+            break;
+            case 2 : output_dq();
+            break;
+            
+            case 3 : exit(1);
+            default : printf(" ");
+        }
+        
+    }
+    
+    
+return 0;
+}
