@@ -1,0 +1,72 @@
+#include <stdio.h>
+#define size 5
+int front =-1;
+int rear =-1;
+int que[size];
+void insert(){
+    if(rear==size-1){
+        printf("overflow");
+        return ;
+    }
+    else{
+        printf("enter value of que :");
+        rear++;
+        scanf("%d",&que[rear]);
+    }
+    front=0;
+
+}
+void delete(){
+    if(front==-1){
+        printf("underflow");
+        return;
+    }
+    else{
+        
+        printf("\nthe deleted element is :%d",que[front]);
+        front++;
+    }
+}
+void display (){
+    for(int i=front;i<=rear;i++){
+        printf("%d ",que[i]);
+    }
+}
+void max(){
+    int max=que[rear];
+    for(int i=front;i<=rear;i++){
+        if(que[i]>max){
+            max=que[i];
+        }
+    }
+    printf("\nthe maximum element is %d",max);
+    
+}
+void min(){
+    int min=que[rear];
+    for(int i=front;i<=rear;i++){
+        if(que[i]<min){
+            min=que[i];
+        }
+    }
+    printf("\nthe minimum element is %d",min);
+    
+}
+int main()
+{
+    
+    for(int i=0;i<size;i++){
+        insert();
+    }
+    
+    display();
+    max();
+    min();
+    for(int i=0;i<size;i++){
+        delete();
+    }
+    
+    return 0;
+}
+
+
